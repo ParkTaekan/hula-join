@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>훌라 방 초대</title>
+<style>
+  body { margin: 0; font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif; background: #0e4a31; color: #f2f4ee;
+         display: flex; min-height: 100vh; align-items: center; justify-content: center; }
+  main { max-width: 360px; width: 100%; padding: 28px 22px; box-sizing: border-box; text-align: center; }
+  h1 { font-size: 22px; margin: 0 0 18px; }
+  .code { font-size: 44px; font-weight: 900; letter-spacing: 6px; color: #ffd24a; margin: 8px 0 18px; }
+  a.btn, button { display: block; width: 100%; box-sizing: border-box; margin: 10px 0; padding: 14px; border-radius: 12px;
+                  border: 0; font-size: 17px; font-weight: 700; text-decoration: none; cursor: pointer; }
+  a.btn { background: #f5c842; color: #2a1700; }
+  button { background: #1f7a4f; color: #fff; }
+  p { color: #c9dcd0; line-height: 1.55; font-size: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>훌라 방 초대</h1>
+  <div>참가 코드</div>
+  <div class="code" id="code">------</div>
+  <a class="btn" id="open" href="#">앱으로 열기</a>
+  <button id="copy" type="button">참가 코드 복사</button>
+  <p>앱이 열리면 <b>방 키</b>를 입력하고 입장하세요. 방 키는 초대한 사람에게 물어보세요.</p>
+  <p>앱이 열리지 않으면 Hula 앱 → 방 참가 → "방장 주소 / 참가 코드" 칸에 위 코드를 넣으세요.</p>
+</main>
+<script>
+  // ?c=참가코드 → 화면에 보여 주고, 안드로이드면 앱(hula://join?c=…)을 연다. 방 키는 링크에 넣지 않는다.
+  var c = (new URLSearchParams(location.search).get('c') || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
+  document.getElementById('code').textContent = c || '------';
+  var android = /Android/i.test(navigator.userAgent);
+  var app = android ? 'intent://join?c=' + c + '#Intent;scheme=hula;package=com.taekan66.hula;end' : 'hula://join?c=' + c;
+  document.getElementById('open').href = app;
+  document.getElementById('copy').onclick = function () {
+    if (navigator.clipboard) navigator.clipboard.writeText(c).then(function () {
+      document.getElementById('copy').textContent = '복사했습니다';
+    });
+  };
+  if (c && android) setTimeout(function () { location.href = app; }, 300);
+</script>
+</body>
+</html>
