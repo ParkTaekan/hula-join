@@ -24,15 +24,21 @@
   <div class="code" id="code">------</div>
   <a class="btn" id="open" href="#">앱으로 열기</a>
   <button id="copy" type="button">참가 코드 복사</button>
-  <p>앱이 열리면 <b>방 키</b>를 입력하고 입장하세요. 방 키는 초대한 사람에게 물어보세요.</p>
-  <p>앱이 열리지 않으면 Hula 앱 → 방 참가 → "방장 주소 / 참가 코드" 칸에 위 코드를 넣으세요.</p>
+  <p id="keyline">앱이 열리면 바로 입장합니다.</p>
+  <p>앱이 열리지 않으면 Hula 앱 → 참가하기 → "참가 코드" 칸에 위 코드를, "방 키" 칸에 방 키를 넣으세요.</p>
+  <p>입장이 안 되고 "이미 닫힌 방"이라고 나오면 지난 초대입니다. 방장에게 새 초대를 받으세요.</p>
 </main>
 <script>
-  // ?c=참가코드 → 화면에 보여 주고, 안드로이드면 앱(hula://join?c=…)을 연다. 방 키는 링크에 넣지 않는다.
-  var c = (new URLSearchParams(location.search).get('c') || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
+  // ?c=참가코드&k=방키 → 화면에 보여 주고, 안드로이드면 앱(hula://join?c=…&k=…)을 열어 바로 입장한다.
+  var q = new URLSearchParams(location.search);
+  var c = (q.get('c') || '').toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 6);
+  var k = (q.get('k') || '').slice(0, 20);
   document.getElementById('code').textContent = c || '------';
+  if (k) document.getElementById('keyline').innerHTML = '방 키 <b>' + k.replace(/[<>&"]/g, '') + '</b> — 앱이 열리면 바로 입장합니다.';
+  else document.getElementById('keyline').innerHTML = '앱이 열리면 <b>방 키</b>를 입력하고 입장하세요. 방 키는 초대한 사람에게 물어보세요.';
+  var query = 'c=' + c + (k ? '&k=' + encodeURIComponent(k) : '');
   var android = /Android/i.test(navigator.userAgent);
-  var app = android ? 'intent://join?c=' + c + '#Intent;scheme=hula;package=com.taekan66.hula;end' : 'hula://join?c=' + c;
+  var app = android ? 'intent://join?' + query + '#Intent;scheme=hula;package=com.taekan66.hula;end' : 'hula://join?' + query;
   document.getElementById('open').href = app;
   document.getElementById('copy').onclick = function () {
     if (navigator.clipboard) navigator.clipboard.writeText(c).then(function () {
