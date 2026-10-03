@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>어디나 훌라 방 초대</title>
+<link rel="icon" href="img/odina-mark-180.png">
+
 <style>
   body { margin: 0; font-family: system-ui, -apple-system, "Noto Sans KR", sans-serif; background: #0e4a31; color: #f2f4ee;
          display: flex; min-height: 100vh; align-items: center; justify-content: center; }
@@ -19,7 +21,7 @@
 </head>
 <body>
 <main>
-  <h1>어디나 훌라 방 초대</h1>
+  <img src="img/odina-logo-white.png" alt="Odina" style="height:42px;margin-bottom:10px"><h1>어디나 훌라 방 초대</h1>
   <div>참가 코드</div>
   <div class="code" id="code">------</div>
   <a class="btn" id="open" href="#">앱으로 열기</a>
@@ -38,7 +40,7 @@
   else document.getElementById('keyline').innerHTML = '앱이 열리면 <b>방 키</b>를 입력하고 입장하세요. 방 키는 초대한 사람에게 물어보세요.';
   var query = 'c=' + c + (k ? '&k=' + encodeURIComponent(k) : '');
   var android = /Android/i.test(navigator.userAgent);
-  var app = android ? 'intent://join?' + query + '#Intent;scheme=hula;package=com.taekan66.hulaanywhere;end' : 'hula://join?' + query;
+  var app = android ? 'intent://join?' + query + '#Intent;scheme=hula;package=com.odina.hula;end' : 'hula://join?' + query;
   document.getElementById('open').href = app;
   document.getElementById('copy').onclick = function () {
     if (navigator.clipboard) navigator.clipboard.writeText(c).then(function () {
