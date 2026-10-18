@@ -35,6 +35,13 @@
   .key { display: inline-block; padding: 0 7px; border: 1px solid #b7c2ba; border-radius: 6px; background: #fff; font-size: 13px; }
   small, .dim { color: var(--dim); }
   figure.shot { margin: 10px 0; }
+  .shots { display: flex; flex-wrap: wrap; gap: 12px; margin: 12px 0; }
+  .shots figure { margin: 0; flex: 1 1 200px; max-width: 260px; }
+  .shots figure.wide { flex-basis: 100%; max-width: 560px; }
+  .shots img { display: block; width: 100%; height: auto; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
+  .shots figcaption { font-size: 13px; color: var(--dim); text-align: center; margin-top: 4px; }
+  ol.steps { padding-left: 22px; }
+  ol.steps > li { margin: 6px 0; }
   figure.shot img { display: block; width: 100%; max-width: 480px; height: auto; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.18); }
 </style>
 </head>
@@ -45,7 +52,7 @@
   <p>같은 와이파이에서, 또는 멀리 있는 친구와 인터넷으로 하는 훌라 카드 게임</p>
 </header>
 <nav>
-  <a href="#start">시작하기</a><a href="#invite">초대·참가</a><a href="#screen">게임 화면</a><a href="#rules">규칙</a><a href="#score">정산</a><a href="#gold">골드·무효</a><a href="#settings">설정</a><a href="#faq">자주 묻는 질문</a>
+  <a href="#start">시작하기</a><a href="#invite">초대·참가</a><a href="#hotspot">비행기·핫스팟</a><a href="#screen">게임 화면</a><a href="#rules">규칙</a><a href="#score">정산</a><a href="#gold">골드·무효</a><a href="#settings">설정</a><a href="#faq">자주 묻는 질문</a>
 </nav>
 <main>
 
@@ -56,6 +63,7 @@
 <tr><th>방 만들기</th><td>내가 방장이 되어 친구를 부릅니다. 인원·방 이름·방 키를 정하고 <span class="key">방 열고 입장</span>. 와이파이·인터넷 연결 상태도 여기서 보입니다.</td></tr>
 <tr><th>참가하기</th><td>친구가 만든 방에 들어갑니다. QR 찍기, 붙여넣기, 참가 코드, 같은 와이파이의 방 목록 중 편한 것으로 고르고 방 키를 넣어 <span class="key">입장</span>.</td></tr>
 </table>
+<div class="shots"><figure><img src="img/guide/lobby.jpg" alt="처음 화면 — 이름 칸과 다섯 버튼" loading="lazy"><figcaption>처음 화면 — 이름 칸과 다섯 버튼</figcaption></figure><figure><img src="img/guide/solo.jpg" alt="혼자 하기 — 인원과 이번 판 규칙 요약" loading="lazy"><figcaption>혼자 하기 — 인원과 이번 판 규칙 요약</figcaption></figure></div>
 <p>위 줄의 <span class="key">← 처음으로</span>는 첫 화면으로, <span class="key">종료</span>는 앱 끝내기, <span class="key">설정</span>은 규칙·봇 속도·레버리지·소리를 바꾸는 화면입니다 (설정에서는 <span class="key">← 뒤로</span>로 돌아갑니다). 입력 칸을 누르면 글자 전체가 선택되어 바로 고쳐 칠 수 있습니다.</p>
 
 <h2 id="invite">2. 초대하고 참가하기</h2>
@@ -67,7 +75,7 @@
 <li><b>같은 와이파이 친구</b> — 친구의 '참가하기' 화면 방 목록에 내 방이 뜹니다. 방 키를 알려 주세요.</li>
 </ul>
 <p>사람이 모자라면 <span class="key">빈자리 봇으로 채우고 시작</span>. 늦게 온 사람은 봇 자리를 구경하다가 그 판이 끝나면 이어받습니다 (0점부터).</p>
-<div class="tip">인터넷이 없는 곳(비행기 모드 + 와이파이·핫스팟만)에서도 됩니다. 이때 대기실에는 QR과 방 키만 나오고, 같은 와이파이(또는 방장 폰의 핫스팟)에 연결한 사람만 들어올 수 있습니다.</div>
+<div class="tip">인터넷이 없는 곳(비행기 모드 + 와이파이·핫스팟만)에서도 됩니다. 이때 대기실에는 QR과 방 키만 나오고, 같은 와이파이(또는 방장 폰의 핫스팟)에 연결한 사람만 들어올 수 있습니다. 자세한 순서는 아래 <a href="#hotspot">비행기에서 핫스팟으로 하기</a>.</div>
 <h3>참가자</h3>
 <ul>
 <li><b>방 목록</b>: 같은 와이파이의 방이 저절로 뜹니다. 방 표시 글자(예: <b>BW</b>)로 우리 방을 찾아 누르고 방 키를 넣은 뒤 <span class="key">입장</span>.</li>
@@ -76,7 +84,63 @@
 </ul>
 <div class="tip">"이 초대의 방은 이미 닫혔습니다"가 나오면 지난 초대입니다. 방장에게 새 초대를 받으세요.</div>
 
+<h3 id="hotspot">비행기에서 (인터넷 없이) 핫스팟으로 하기</h3>
+<p>비행기·기차·캠핑장처럼 인터넷이 없는 곳에서도 됩니다. <b>방장 폰의 핫스팟이 공유기 역할</b>을 하고, 친구들은 그 핫스팟에 와이파이로 붙습니다.
+게임은 폰끼리만 주고받으므로 <b>모바일 데이터를 쓰지 않습니다</b>. 앱은 미리 설치해 두세요 (비행기에서는 내려받을 수 없습니다).</p>
+<div class="shots"><figure class="wide"><img src="img/guide/hs-map.jpg" alt="방장 폰 핫스팟에 친구 폰이 와이파이로 연결" loading="lazy"><figcaption>방장 폰 핫스팟에 친구 폰이 와이파이로 연결</figcaption></figure></div>
+
+<h3>① 방장: 비행기 모드 + 핫스팟 켜기</h3>
+<ol class="steps">
+<li>폰 <b>설정 → 연결</b>에서 <b>비행기 탑승 모드</b>를 켭니다.</li>
+<li>같은 화면의 <b>모바일 핫스팟 및 테더링 → 모바일 핫스팟</b>을 켭니다 (삼성 기준, 다른 폰은 "핫스팟" "테더링"으로 찾으세요).</li>
+<li>모바일 핫스팟 글자를 눌러 <b>핫스팟 이름과 비밀번호</b>를 확인하고 친구들에게 알려 줍니다.</li>
+</ol>
+<p class="tip">기종에 따라 비행기 모드에서 핫스팟이 회색으로 꺼져 있으면, 비행기 모드를 켠 뒤 <b>Wi-Fi를 한 번 켰다 끄고</b> 다시 시도해 보세요. 그래도 안 되면 그 폰은 방장을 못 하니, 다른 사람 폰으로 방장을 바꿔 보세요.</p>
+
+<h3>② 친구들: 방장 핫스팟에 와이파이 연결</h3>
+<ol class="steps">
+<li>비행기 탑승 모드는 켠 채로 <b>Wi-Fi만 켭니다</b>.</li>
+<li>목록에서 방장 핫스팟 이름(예: "민수의 폰")을 누르고 비밀번호를 넣습니다.</li>
+<li>"인터넷 없음 — 연결을 유지할까요?"가 나오면 <b>유지(예)</b>를 고릅니다. 안 그러면 폰이 와이파이를 끊어 버릴 수 있습니다.</li>
+</ol>
+<div class="shots"><figure><img src="img/guide/hs-phone-host.jpg" alt="방장 폰 — 비행기 모드 + 모바일 핫스팟" loading="lazy"><figcaption>방장 폰 — 비행기 모드 + 모바일 핫스팟</figcaption></figure><figure><img src="img/guide/hs-phone-friend.jpg" alt="친구 폰 — 비행기 모드 + Wi-Fi로 방장 핫스팟 연결" loading="lazy"><figcaption>친구 폰 — 비행기 모드 + Wi-Fi로 방장 핫스팟 연결</figcaption></figure></div>
+<p class="dim"><small>설정 그림은 이해를 돕는 예시입니다. 메뉴 이름과 위치는 폰마다 조금 다릅니다.</small></p>
+
+<h3>③ 방장: 앱에서 방 열기</h3>
+<ol class="steps">
+<li>어디나 훌라를 열고 <span class="key">방 만들기</span>를 누릅니다.</li>
+<li><b>인원</b>(2~5명)을 고르고, 방 이름은 그대로 두거나 바꿉니다. <b>방 키</b>(숫자 4자리)는 친구들에게 알려 줄 비밀번호입니다. 아래에 이 방의 규칙이 요약되어 나옵니다.</li>
+<li><span class="key">방 열고 입장</span>을 누르면 대기실이 열립니다. 인터넷이 없으니 "<b>인터넷 없음 — 같은 와이파이에서만 참가할 수 있습니다</b>"라고 나오는데, 핫스팟은 같은 와이파이이므로 정상입니다.</li>
+<li>대기실에는 <b>QR</b>, <b>방 키</b>, <b>방 표시</b>(파란 글자 2개, 예: 4W)가 보입니다. 친구가 방을 찾을 때 "4W 방이야"라고 말해 주면 쉽습니다.</li>
+</ol>
+<div class="shots"><figure><img src="img/guide/hs-host-setup.jpg" alt="방 만들기 — 인원·방 이름·방 키" loading="lazy"><figcaption>방 만들기 — 인원·방 이름·방 키</figcaption></figure><figure><img src="img/guide/hs-host-wait.jpg" alt="대기실 — QR · 방 키 · 방 표시 (인터넷 없음)" loading="lazy"><figcaption>대기실 — QR · 방 키 · 방 표시 (인터넷 없음)</figcaption></figure></div>
+
+<h3>④ 친구들: 앱에서 들어가기</h3>
+<p>둘 중 편한 방법으로 들어옵니다.</p>
+<ul>
+<li><b>방 목록으로</b>: <span class="key">참가하기</span> → "같은 와이파이의 방"에 방장 방이 뜹니다 (안 뜨면 <span class="key">새로 고침</span>). 방을 누르고 <b>방 키</b>를 넣은 뒤 <span class="key">입장</span>.</li>
+<li><b>QR로</b>: <span class="key">참가하기</span> → <span class="key">QR 찍기</span>로 방장 화면의 QR을 찍으면 방 키 없이 바로 들어옵니다. 옆자리라면 이 방법이 가장 빠릅니다.</li>
+</ul>
+<div class="shots"><figure><img src="img/guide/hs-join-found.jpg" alt="참가하기 — 같은 와이파이의 방 목록" loading="lazy"><figcaption>참가하기 — 같은 와이파이의 방 목록</figcaption></figure><figure><img src="img/guide/hs-join-key.jpg" alt="방을 고르고 방 키를 넣고 입장" loading="lazy"><figcaption>방을 고르고 방 키를 넣고 입장</figcaption></figure></div>
+
+<h3>⑤ 시작</h3>
+<p>방장 대기실의 "입장한 사람"에 친구 이름과 <b>● 접속</b>이 뜨고, 친구 화면에도 같은 목록이 나옵니다. 인원이 다 차면 첫 판이 저절로 시작됩니다.
+사람이 모자라면 방장이 <span class="key">빈자리 봇으로 채우고 시작</span>을 누르세요. 늦게 온 친구는 봇 자리를 구경하다 그 판이 끝나면 이어받습니다.</p>
+<div class="shots"><figure><img src="img/guide/hs-host-joined.jpg" alt="방장 대기실 — 친구가 들어오면 ● 접속" loading="lazy"><figcaption>방장 대기실 — 친구가 들어오면 ● 접속</figcaption></figure><figure><img src="img/guide/hs-join-wait.jpg" alt="친구 화면 — 방에 들어와 시작을 기다림" loading="lazy"><figcaption>친구 화면 — 방에 들어와 시작을 기다림</figcaption></figure></div>
+
+<h3>비행기에서 알아 둘 것</h3>
+<ul>
+<li><b>방장 폰 배터리</b>: 핫스팟과 방을 같이 돌려 배터리를 많이 씁니다. 충전기를 꽂아 두거나 배터리가 많은 사람이 방장을 하세요.</li>
+<li><b>방장은 앱을 끄지 마세요</b>: 방은 방장 폰 안에 있습니다. 방장이 잠깐 다른 앱으로 가면 최대 2분 동안 게임이 멈췄다가 돌아오면 이어지지만, 앱을 완전히 끄면 게임이 끝납니다. 다른 사람은 잠깐 나갔다 와도 그 사이 봇이 대신 둡니다.</li>
+<li><b>잠시 멈춤</b>: 식사·이착륙 때는 방장이 <span class="key">≡</span> 메뉴의 <b>잠시 멈춤</b>으로 모두의 시간을 세워 두세요.</li>
+<li><b>소리</b>: 기내에서는 ≡ 메뉴나 설정에서 음성·효과음을 끄거나 이어폰을 쓰세요.</li>
+<li><b>항공사 안내</b>를 따르세요. 이착륙 때 전자기기 사용을 멈추라고 하면 따르세요.</li>
+<li>방이 안 보이면: 친구 폰이 방장 핫스팟에 <b>연결됨</b>인지 먼저 확인하세요. 그래도 안 되면 QR 찍기로 들어오세요.</li>
+</ul>
+
 <h2 id="screen">3. 게임 화면</h2>
+<div class="shots"><figure><img src="img/guide/table.jpg" alt="세로 화면 — 위 상대 칸, 가운데 바닥 조합, 아래 버튼과 내 손패" loading="lazy"><figcaption>세로 화면 — 위 상대 칸, 가운데 바닥 조합, 아래 버튼과 내 손패</figcaption></figure><figure><img src="img/guide/thankyou.jpg" alt="땡큐 기회 — 창을 누르면 땡큐, 함께 낼 손패에 테두리" loading="lazy"><figcaption>땡큐 기회 — 창을 누르면 땡큐, 함께 낼 손패에 테두리</figcaption></figure></div>
+<div class="shots"><figure class="wide"><img src="img/guide/ai-advice.jpg" alt="가로 화면 — AI 추천: 낼 카드에 노란 화살표, 파랑 테두리 = 새로 등록할 카드" loading="lazy"><figcaption>가로 화면 — AI 추천: 낼 카드에 노란 화살표, 파랑 테두리 = 새로 등록할 카드</figcaption></figure></div>
 <ul>
 <li>위: 몇 번째 판인지, 누구 차례인지, 지금 할 일. 배판·골드판 표시. (휴대폰 가로 화면은 위 줄을 짧게 하고, 지금 할 일은 왼쪽 마지막 상대 칸 밑에, 내 이름·점수·정렬 단추는 오른쪽 버튼 밑에 나옵니다.)</li>
 <li>상대 칸: 이름(노랑 = 등록함), 점수, 손패 장수. 초록 테두리 = 지금 차례.</li>
@@ -95,6 +159,7 @@
 <li><b>잠시 멈춤</b>(방장): 방을 닫지 않고 게임 전체를 멈춥니다. 모두의 시간이 서고, 다른 사람 화면에는 "방장이 게임을 잠시 멈췄습니다" 안내가 뜹니다. 방장이 <span class="key">▶ 다시 시작</span>을 누르면 이어서 합니다.</li>
 <li><b>나가기</b>: 방장이 방을 닫거나 게임이 끝나면, 모두에게 <b>누가 얼마(±)를 땄고 몇 승 몇 패인지</b> 성적표가 나오고 <span class="key">닫기</span>로 끝납니다. 참가자가 나가면 그 자리는 <b>봇이 이어서</b> 두고 이름 옆에 "나감(봇)"이 붙습니다. 같은 폰으로 다시 들어오면 그 자리를 이어받습니다.</li>
 </ul>
+<div class="shots"><figure><img src="img/guide/result.jpg" alt="판 결과 — 각자 남은 패, 순위와 점수 (스톱 독박)" loading="lazy"><figcaption>판 결과 — 각자 남은 패, 순위와 점수 (스톱 독박)</figcaption></figure></div>
 
 <h3 id="my-ai">AI 학습하기 (내 AI)</h3>
 <ul>
@@ -140,6 +205,7 @@
 <li>바닥에 7 한 장이 있고 내 손에 7이 두 장이면, 두 장을 골라 <span class="key">붙이기</span> → 777. 이때 붙이기는 되지만 <b>등록은 아닙니다</b>(미등록 그대로). 7 두 장만으로 새로 등록할 수는 없습니다.</li>
 <li>내 손에 7이 세 장이면 바닥 7에 붙여 7777. 7 세 장은 그것만으로도 조합이라 <b>등록으로 칩니다</b>.</li>
 </ul>
+<div class="shots"><figure><img src="img/guide/joker-choice.jpg" alt=""조커를 어느 쪽에 둘까요?" — ♣10 ♣J 조커를 Q 쪽 또는 9 쪽으로" loading="lazy"><figcaption>"조커를 어느 쪽에 둘까요?" — ♣10 ♣J 조커를 Q 쪽 또는 9 쪽으로</figcaption></figure></div>
 <h3>땡큐</h3>
 <p>누가 카드를 버리면 잠깐(기본 10초) 땡큐 기회가 열립니다. 그 카드로 내 손패와 조합을 만들 수 있으면 <span class="key">땡큐!</span>로 가져가 바로 등록합니다.</p>
 <p><b>더 빠른 방법</b>: 조합이 될 카드를 고르면 가운데 땡큐 창(시간이 줄어드는 풍선)이 깜빡이며 "이 창을 누르면 땡큐!"가 뜹니다. 버튼을 찾을 필요 없이 <b>그 창을 누르면 바로 땡큐</b>입니다.</p>
@@ -160,6 +226,7 @@
 <b>로우</b>(받은 7장 합 15점 이하, 설정 14~16 — 7은 7점, 조커는 14점), <b>하이</b>(받은 7장 합 83점 이상, 설정 81~84 — 7은 7점, 조커는 조커 점수): 손패 7장일 때, 또는 <b>땡큐한 차례</b>에 한 장 버린 뒤 손패 + 땡큐 조합 = 7장일 때 판정합니다 (예: A 두 장으로 A 땡큐 → 손 4장 + 땡큐 3장). 그 차례가 지나면 기회가 없습니다.<br>
 → 그 즉시 모두에게서 20,000점씩. 화면에 그 카드들(포카 7 네 장, 스트레이트플러시·하이·로우 7장과 합계 점수)이 크게 나오고 박수가 터진 뒤 정산이 보입니다.</td></tr>
 </table>
+<div class="shots"><figure class="wide"><img src="img/guide/poka.jpg" alt="7포카 — 7 네 장이 크게 나오고 짝! 짝! 짝!" loading="lazy"><figcaption>7포카 — 7 네 장이 크게 나오고 짝! 짝! 짝!</figcaption></figure></div>
 
 <h3 id="points">카드 점수</h3>
 <table>
@@ -201,6 +268,8 @@
 <li><b>여럿이</b>: 같은 합계에 더해 <b>방별</b>(방 이름을 누르면 그 방의 게임마다 날짜·방 키·모두의 점수·승패), <b>같이 친 사람</b>(같이 한 게임 수, 내가 앞선·뒤진 게임, 내 점수), <b>최근 게임</b>.</li>
 </ul>
 
+<div class="shots"><figure><img src="img/guide/stats.jpg" alt="성적 보기 — 여럿이 · 방별 기록" loading="lazy"><figcaption>성적 보기 — 여럿이 · 방별 기록</figcaption></figure></div>
+
 <h2 id="settings">7. 설정 · 소리</h2>
 <ul>
 <li>오른쪽 위 <span class="key">설정</span>에 모두 있습니다. <b>혼자 하기와 방 만들기는 설정을 따로 기억</b>합니다: 마지막으로 시작한 게임의 인원·규칙이 다음번 기본값이 됩니다 (예: 혼자 5인으로 했으면 다음 혼자 하기도 5인).</li>
@@ -213,6 +282,8 @@
 <li>음성(훌라! 땡큐! 하세요! …)과 효과음은 따로 끄고 켭니다. 폰이 무음·진동이면 소리가 나지 않습니다.</li>
 <li>게임 중에는 화면이 저절로 꺼지지 않습니다.</li>
 </ul>
+<div class="shots"><figure><img src="img/guide/settings.jpg" alt="설정 화면 — 레버리지·봇 속도·조커·판 수·무등록 스톱…" loading="lazy"><figcaption>설정 화면 — 레버리지·봇 속도·조커·판 수·무등록 스톱…</figcaption></figure></div>
+
 
 <h2 id="faq">8. 자주 묻는 질문</h2>
 <h3 id="faq-attach">바닥 ♠6 7 8에 ♠9만 붙이고, ♠10 ♥10은 땡큐하려고 남겨 두고 싶어요</h3>
